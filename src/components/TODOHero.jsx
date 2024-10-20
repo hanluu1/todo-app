@@ -2,12 +2,12 @@
 
 function TODOHero({ todos_completed, total_todos}) {
     return (
-        <section className="todohero_section">
+        <section className="todohero_section ">
             <div className="">
-                <p className="text_large">Task Done</p>
-                <p className="text_small">Keep it up</p>
+                <p className="text-3xl text-zinc-600">Task Done</p>
+                <p className="text-xl text-zinc-600">Keep it up</p>
             </div>
-            <div className="">
+            <div className="text-zinc-600">
                 {todos_completed}/{total_todos}
             </div>
         </section>
