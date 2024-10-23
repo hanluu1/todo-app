@@ -19,7 +19,7 @@ export function TodoList({
   );
 }
 
-function Item({ item, setTodos }) {
+export function Item({ item, setTodos }) {
   const [editing, setEditing] = React.useState(false);
   const inputRef = React.useRef(null);
 
@@ -41,7 +41,8 @@ function Item({ item, setTodos }) {
     if (editing && inputRef.current) {
       inputRef.current.focus();
       // Position the cursor at the end of the text
-      inputRef.current.setSelectionRange(inputRef.current.value.length, inputRef.current.value.length);
+      inputRef.current.setSelectionRange(inputRef.current.value.length, 
+                                          inputRef.current.value.length);
     }
   }, [editing]);
 
@@ -60,11 +61,10 @@ function Item({ item, setTodos }) {
   const inputDelete = () => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== item.id));
   };
-
   return (
-    <li id={item?.id} className="todo_item">
+    <li id={item?.id} className="flex justify-between items-center h-12 w-full max-w-96 text-sm bg-[#fefdf2] text-[#c2b39a] p-3">
       {editing ? (
-        <form className="edit-form" onSubmit={handleInputSubmit}>
+        <form className="flex items-center w-full" onSubmit={handleInputSubmit}>
           <label htmlFor="edit-todo">
             <input
               ref={inputRef}
@@ -74,25 +74,27 @@ function Item({ item, setTodos }) {
               defaultValue={item?.title}
               onBlur={handleInputBlur}
               onChange={handleInputChange}
+              className="h-full w-full border-0 outline-transparent text-[16px] bg-[#fefdf2] text-[#c2b39a] p-3"
             />
           </label>
         </form>
       ) : (
         <>
-          <button className="todo_items_left" onClick={completeTodo}>
+
+          <button className="flex items-center border border-gray-50 text-[#3c4049] gap-2 text-sm " onClick={completeTodo}>
             <svg fill={item.is_completed ? "gray" : "transparent"} width="24" height="24" viewBox="0 0 24 24">
-              <circle cx="11.998" cy="11.998" fillRule="nonzero" r="9.998" stroke="beige" />
+              <circle cx="11.998" cy="11.998" fillRule="nonzero" r="9.998" stroke="gray" />
             </svg>
             <p style={item.is_completed ? { textDecoration: "line-through" } : {}}>{item?.title}</p>
           </button>
-          <div className="todo_items_right">
+          <div className="flex items-center gap-1">
             <button onClick={handleEdit}>
-              <span className="visually-hidden">Edit</span>
+              <span className="absolute overflow-hidden whitespace-nowrap h-[1px] w-[1px]" style={{ clip: "rect(1px, 1px, 1px, 1px)" }}>Edit</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
-                fill="currentColor"
+                fill="#c2b39a"
                 className="bi bi-pencil-square"
                 viewBox="0 0 16 16"
               >
@@ -104,12 +106,12 @@ function Item({ item, setTodos }) {
               </svg>
             </button>
             <button onClick={inputDelete}>
-              <span className="visually-hidden">Delete</span>
+              <span className="absolute overflow-hidden whitespace-nowrap h-[1px] w-[1px]" style={{ clip: "rect(1px, 1px, 1px, 1px)" }}>Delete</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
-                fill="currentColor"
+                fill="#c2b39a"
                 className="bi bi-trash3-fill"
                 viewBox="0 0 16 16"
               >

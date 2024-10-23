@@ -1,6 +1,8 @@
 "use client";
 
-function Form({setTodos}) {
+import React from "react";
+
+export function Form({setTodos}) {
     const handleSubmit = (event) => {
         event.preventDefault();
         // reset the form
@@ -13,7 +15,7 @@ function Form({setTodos}) {
   };
       
       return (
-        <form className="self-center w-[97%] max-w-[455px] flex items-center gap-3 mt-9" onSubmit={handleSubmit}>
+        <form className="self-center w-full max-w-96 flex items-center gap-3 mt-9" onSubmit={handleSubmit}>
           <label htmlFor="todo" className="w-[90%] text-gray-700 ">
             <input className="w-full h-12 bg-red-100 rounded-md p-4 "
               type="text"
@@ -33,4 +35,3 @@ function Form({setTodos}) {
         </form>
       );
     }
-export default Form
