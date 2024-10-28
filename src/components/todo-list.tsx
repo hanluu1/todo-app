@@ -1,17 +1,13 @@
 "use client";
-import React, { useEffect } from "react";
+import { Todo, useTodoStore } from "@/stores";
+import React, { useEffect, useRef } from "react";
 
-export function TodoList({
-  todos,
-  setTodos,
-}: {
-  todos: { id: number; title: string; is_completed: boolean }[];
-  setTodos: React.Dispatch<React.SetStateAction<{ id: number; title: string; is_completed: boolean }[]>>;
-}) {
+export function TodoList() {
+  const todos = useTodoStore((state) => state.todos);
   return (
     <ol className="self-center w-full max-w-96 flex flex-col items-center my-6 gap-6">
       {todos && todos.length > 0 ? (
-        todos?.map((item, index) => <Item key={index} item={item} setTodos={setTodos} />)
+        todos?.map((item, index) => <Item key={index} item={item} />)
       ) : (
         <p className="text-zinc-600">I feel empty, give me some tasks</p>
       )}
@@ -19,19 +15,9 @@ export function TodoList({
   );
 }
 
-export function Item({ item, setTodos }) {
+function Item({ item }: { item: Todo }) {
   const [editing, setEditing] = React.useState(false);
-  const inputRef = React.useRef(null);
-
-  const completeTodo = () => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        todo.id === item.id
-          ? { ...todo, is_completed: !todo.is_completed } // Toggle is_completed
-          : todo
-      )
-    );
-  };
+  const inputRef = useRef(null);
 
   const handleEdit = () => {
     setEditing(true);
@@ -39,10 +25,9 @@ export function Item({ item, setTodos }) {
 
   useEffect(() => {
     if (editing && inputRef.current) {
-      inputRef.current.focus();
+      // inputRef.current.focus();
       // Position the cursor at the end of the text
-      inputRef.current.setSelectionRange(inputRef.current.value.length, 
-                                          inputRef.current.value.length);
+      // inputRef.current.setSelectionRange(inputRef.current.value.length, inputRef.current.value.length);
     }
   }, [editing]);
 
@@ -54,34 +39,38 @@ export function Item({ item, setTodos }) {
   const handleInputBlur = () => {
     setEditing(false);
   };
-
   const handleInputChange = (e) => {
-    setTodos((prevTodos) => prevTodos.map((todo) => (todo.id === item.id ? { ...todo, title: e.target.value } : todo)));
+    // setTodos((prevTodos) => prevTodos.map((todo) => (todo.id === item.id ? { ...todo, title: e.target.value } : todo)));
   };
   const inputDelete = () => {
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== item.id));
+    // setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== item.id));
   };
   return (
-    <li id={item?.id} className="flex justify-between items-center h-12 w-full max-w-96 text-sm bg-[#fefdf2] text-[#c2b39a] p-3">
+    <li
+      id={item?.id}
+      className="flex justify-between items-center h-12 w-full max-w-96 text-sm bg-[#fefdf2] text-[#c2b39a] p-3"
+    >
       {editing ? (
-        <form className="flex items-center w-full" onSubmit={handleInputSubmit}>
-          <label htmlFor="edit-todo">
-            <input
-              ref={inputRef}
-              type="text"
-              name="edit-todo"
-              id="edit-todo"
-              defaultValue={item?.title}
-              onBlur={handleInputBlur}
-              onChange={handleInputChange}
-              className="h-full w-full border-0 outline-transparent text-[16px] bg-[#fefdf2] text-[#c2b39a] p-3"
-            />
-          </label>
-        </form>
+        <div className="flex items-center w-full" onSubmit={handleInputSubmit}>
+          <input
+            ref={inputRef}
+            type="text"
+            name="edit-todo"
+            id="edit-todo"
+            defaultValue={item?.title}
+            onBlur={handleInputBlur}
+            onChange={handleInputChange}
+            className="h-full w-full border-0 outline-transparent text-[16px] bg-[#fefdf2] text-[#c2b39a] p-3"
+          />
+          <button>Save</button>
+          <button>Cancel</button>
+        </div>
       ) : (
         <>
-
-          <button className="flex items-center border border-gray-50 text-[#3c4049] gap-2 text-sm " onClick={completeTodo}>
+          <button
+            className="flex items-center border border-gray-50 text-[#3c4049] gap-2 text-sm "
+            onClick={() => useTodoStore.getState().completeTodo(item.id)}
+          >
             <svg fill={item.is_completed ? "gray" : "transparent"} width="24" height="24" viewBox="0 0 24 24">
               <circle cx="11.998" cy="11.998" fillRule="nonzero" r="9.998" stroke="gray" />
             </svg>
@@ -89,7 +78,12 @@ export function Item({ item, setTodos }) {
           </button>
           <div className="flex items-center gap-1">
             <button onClick={handleEdit}>
-              <span className="absolute overflow-hidden whitespace-nowrap h-[1px] w-[1px]" style={{ clip: "rect(1px, 1px, 1px, 1px)" }}>Edit</span>
+              <span
+                className="absolute overflow-hidden whitespace-nowrap h-[1px] w-[1px]"
+                style={{ clip: "rect(1px, 1px, 1px, 1px)" }}
+              >
+                Edit
+              </span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -106,7 +100,12 @@ export function Item({ item, setTodos }) {
               </svg>
             </button>
             <button onClick={inputDelete}>
-              <span className="absolute overflow-hidden whitespace-nowrap h-[1px] w-[1px]" style={{ clip: "rect(1px, 1px, 1px, 1px)" }}>Delete</span>
+              <span
+                className="absolute overflow-hidden whitespace-nowrap h-[1px] w-[1px]"
+                style={{ clip: "rect(1px, 1px, 1px, 1px)" }}
+              >
+                Delete
+              </span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
