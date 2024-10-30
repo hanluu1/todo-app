@@ -1,6 +1,10 @@
 "use client";
 import { Todo, useTodoStore } from "@/stores";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
+import { ExclamationCircleIcon, PencilAltIcon, TrashIcon } from "@heroicons/react/outline";
+import { Description, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react";
+
+import clsx from "clsx";
 
 export function TodoList() {
   const todos = useTodoStore((state) => state.todos);
@@ -18,6 +22,7 @@ export function TodoList() {
 function Item({ item }: { item: Todo }) {
   const [editing, setEditing] = useState(false);
   const [inputText, setInputText] = useState(item.title);
+  const [isOpen, setIsOpen] = useState(false);
 
   const inputRef = useRef(null);
 
@@ -55,16 +60,6 @@ function Item({ item }: { item: Todo }) {
             >
               update
             </span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="currentColor"
-              className="bi bi-check2"
-              viewBox="0 0 16 16"
-            >
-              <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
-            </svg>
           </button>
           <button
             onClick={() => {
@@ -96,55 +91,71 @@ function Item({ item }: { item: Todo }) {
             className="flex items-center border border-gray-50 text-[#3c4049] gap-2 text-sm "
             onClick={() => useTodoStore.getState().completeTodo(item.id)}
           >
-            <svg fill={item.is_completed ? "gray" : "transparent"} width="24" height="24" viewBox="0 0 24 24">
-              <circle cx="11.998" cy="11.998" fillRule="nonzero" r="9.998" stroke="gray" />
-            </svg>
+            <div
+              className={clsx("w-5 h-5 rounded-full", item.is_completed ? "bg-gray-500" : "border border-gray-500")}
+            />
             <p style={item.is_completed ? { textDecoration: "line-through" } : {}}>{item?.title}</p>
           </button>
           <div className="flex items-center gap-1">
-            <button onClick={() => setEditing(true)}>
-              <span
-                className="absolute overflow-hidden whitespace-nowrap h-[1px] w-[1px]"
-                style={{ clip: "rect(1px, 1px, 1px, 1px)" }}
-              >
-                Edit
-              </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="gray"
-                className="bi bi-pencil-square"
-                viewBox="0 0 16 16"
-              >
-                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                <path
-                  fillRule="evenodd"
-                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"
-                />
-              </svg>
-            </button>
-            <button onClick={() => useTodoStore.getState().deleteTodo(item.id)}>
-              <span
-                className="absolute overflow-hidden whitespace-nowrap h-[1px] w-[1px]"
-                style={{ clip: "rect(1px, 1px, 1px, 1px)" }}
-              >
-                Delete
-              </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                fill="gray"
-                className="bi bi-trash3-fill"
-                viewBox="0 0 16 16"
-              >
-                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
-              </svg>
-            </button>
+            <PencilAltIcon className="w-5 cursor-pointer" onClick={() => setEditing(true)} />
+            <TrashIcon className="w-5 text-red-500 cursor-pointer" onClick={() => setIsOpen(true)} />
           </div>
         </>
       )}
+      <Dialog open={isOpen} onClose={setIsOpen} className="relative z-10">
+        <DialogBackdrop
+          transition
+          className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in"
+        />
+
+        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <DialogPanel
+              transition
+              className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-[closed]:translate-y-4 data-[closed]:opacity-0 data-[enter]:duration-300 data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in sm:my-8 sm:w-full sm:max-w-lg data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
+            >
+              <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                <div className="sm:flex sm:items-start">
+                  <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                    <ExclamationCircleIcon aria-hidden="true" className="h-6 w-6 text-red-600" />
+                  </div>
+                  <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                    <DialogTitle as="h3" className="text-base font-semibold text-gray-900">
+                      Deactivate account
+                    </DialogTitle>
+                    <div className="mt-2">
+                      <p className="text-sm text-gray-500">
+                        Are you sure you want to deactivate your account? All of your data will be permanently removed.
+                        This action cannot be undone.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                <button
+                  type="button"
+                  onClick={() => {
+                    useTodoStore.getState().deleteTodo(item.id);
+                    setIsOpen(false);
+                  }}
+                  className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                >
+                  Delete
+                </button>
+                <button
+                  type="button"
+                  data-autofocus
+                  onClick={() => setIsOpen(false)}
+                  className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                >
+                  Cancel
+                </button>
+              </div>
+            </DialogPanel>
+          </div>
+        </div>
+      </Dialog>
     </li>
   );
 }
