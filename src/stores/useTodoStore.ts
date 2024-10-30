@@ -5,6 +5,7 @@ export interface Todo {
   is_completed: boolean;
   id: string;
   title: string;
+  
 }
 interface TodoStoreState {
   todos: Todo[];

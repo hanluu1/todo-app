@@ -7,7 +7,7 @@ export function TodoHero({ todosCompleted, totalTodos }: { todosCompleted: numbe
         <p className="text-3xl text-zinc-600">Task Done</p>
         <p className="text-xl text-zinc-600">Keep it up</p>
       </div>
-      <div className="text-zinc-600 bg-[#f6f6d9] w-[150px] h-[150px] rounded-full text-5xl flex items-center justify-center text-center">
+      <div className="text-zinc-600 bg-[#E5F1F3] w-[150px] h-[150px] rounded-full text-5xl flex items-center justify-center text-center">
         {todosCompleted}/{totalTodos}
       </div>
     </section>

@@ -14,7 +14,7 @@ function Home() {
   const todosCompleted = todos.filter((todos) => todos.is_completed === true).length;
   const totalTodos = todos.length;
   return (
-    <div className="flex flex-col w-2/3 sm:max-w-full ">
+    <div className="flex flex-col w-10/12  sm:max-w-full h-screen ">
       <Header />
       <TodoHero todosCompleted={todosCompleted} totalTodos={totalTodos} />
       <Form />

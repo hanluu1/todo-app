@@ -11,22 +11,10 @@
 }
 html,
 body {
-  @apply  bg-red-200 text-white flex items-center justify-center w-full;
+  @apply bg-gradient-to-r from-[#67cfec]  to-[#f2a8d5] flex items-center justify-center w-full h-screen;
   font-family: sans-serif;
 }
-.button {
-  cursor: pointer;
-}
-.visually-hidden {
-  position: absolute !important;
-  clip: rect(1px, 1px, 1px, 1px);
-  padding: 0 !important;
-  border: 0 !important;
-  height: 1px !important;
-  width: 1px !important;
-  overflow: hidden;
-  white-space: nowrap;
-}
+
 
 
 

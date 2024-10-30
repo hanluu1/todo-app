@@ -1,7 +1,7 @@
 "use client";
 import { Todo, useTodoStore } from "@/stores";
 import React, { useRef, useState } from "react";
-import { ExclamationCircleIcon, PencilAltIcon, TrashIcon } from "@heroicons/react/outline";
+import { ExclamationIcon, PencilAltIcon, TrashIcon, CheckIcon, XIcon } from "@heroicons/react/outline";
 import { Description, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react";
 
 import clsx from "clsx";
@@ -28,7 +28,6 @@ function Item({ item }: { item: Todo }) {
 
   const handleInputSubmit = (event) => {
     event.preventDefault();
-
     setEditing(false);
   };
 
@@ -48,41 +47,17 @@ function Item({ item }: { item: Todo }) {
             onChange={(e) => setInputText(e.target.value)}
             className="h-full w-full border-0 outline-transparent text-[16px] bg-[#fefdf2] text-[#c2b39a] p-3"
           />
-          <button
-            onClick={() => {
+          <button>
+            <CheckIcon className="w-5 cursor-pointer" onClick={() => {
               useTodoStore.getState().updateTodo(item.id, inputText);
               setEditing(false);
-            }}
-          >
-            <span
-              className="absolute overflow-hidden whitespace-nowrap h-[1px] w-[1px]"
-              style={{ clip: "rect(1px, 1px, 1px, 1px)" }}
-            >
-              update
-            </span>
+            }}/>
           </button>
-          <button
-            onClick={() => {
+          <button>
+            <XIcon className="w-5 cursor-pointer" onClick={() => {
               setEditing(false);
               setInputText(item.title);
-            }}
-          >
-            <span
-              className="absolute overflow-hidden whitespace-nowrap h-[1px] w-[1px]"
-              style={{ clip: "rect(1px, 1px, 1px, 1px)" }}
-            >
-              cancel
-            </span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              className="bi bi-x-lg"
-              viewBox="0 0 16 16"
-            >
-              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
-            </svg>
+            }}/>
           </button>
         </div>
       ) : (
@@ -117,18 +92,13 @@ function Item({ item }: { item: Todo }) {
               <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start">
                   <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                    <ExclamationCircleIcon aria-hidden="true" className="h-6 w-6 text-red-600" />
+                    <ExclamationIcon aria-hidden="true" className="h-6 w-6 text-red-600" />
                   </div>
                   <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                    <DialogTitle as="h3" className="text-base font-semibold text-gray-900">
-                      Deactivate account
+                    <DialogTitle as="h3" className="text-base text-gray-600">
+                     Are you sure you want to delete this task? Action can not be undone.
                     </DialogTitle>
-                    <div className="mt-2">
-                      <p className="text-sm text-gray-500">
-                        Are you sure you want to deactivate your account? All of your data will be permanently removed.
-                        This action cannot be undone.
-                      </p>
-                    </div>
+                  
                   </div>
                 </div>
               </div>
@@ -139,7 +109,7 @@ function Item({ item }: { item: Todo }) {
                     useTodoStore.getState().deleteTodo(item.id);
                     setIsOpen(false);
                   }}
-                  className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                  className="inline-flex w-full justify-center rounded-md bg-gray-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 sm:ml-3 sm:w-auto"
                 >
                   Delete
                 </button>
