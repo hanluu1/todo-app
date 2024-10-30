@@ -11,6 +11,8 @@ interface TodoStoreState {
   setTodos: (data: Todo[]) => void;
   addTodo: (todo: Todo) => void;
   completeTodo: (id: string) => void;
+  deleteTodo:(id: string) => void;
+  updateTodo:(id: string, title: string) => void;
 }
 
 export const useTodoStore = create<TodoStoreState>()(
@@ -28,10 +30,23 @@ export const useTodoStore = create<TodoStoreState>()(
           todos: state.todos.map((todo) => (todo.id === id ? { ...todo, is_completed: !todo.is_completed } : todo)), // replace
         }));
       },
+      deleteTodo: (id: string) => {
+        set((state) => ({
+          todos: state.todos.filter((todo)=> todo.id !== id),
+
+        }));
+      },
+      updateTodo: (id: string, title: string) => {
+        set((state) => ({
+          todos: state.todos.map((todo) => (todo.id === id ? {...todo, title} : todo))
+        }))
+      }
     }),
+        
     {
       version: 1,
       name: "todo-storage",
     }
   )
 );
+

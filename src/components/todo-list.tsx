@@ -17,22 +17,26 @@ export function TodoList() {
 
 function Item({ item }: { item: Todo }) {
   const [editing, setEditing] = React.useState(false);
+  const [inputText, setInputText] = React.useState(item.title);
   const inputRef = useRef(null);
+  
 
   const handleEdit = () => {
     setEditing(true);
+    setInputText(item.title);
   };
 
   useEffect(() => {
     if (editing && inputRef.current) {
-      // inputRef.current.focus();
+      //inputRef.current.focus();
       // Position the cursor at the end of the text
-      // inputRef.current.setSelectionRange(inputRef.current.value.length, inputRef.current.value.length);
+      //inputRef.current.setSelectionRange(inputRef.current.value.length, inputRef.current.value.length);
     }
   }, [editing]);
 
   const handleInputSubmit = (event) => {
     event.preventDefault();
+    
     setEditing(false);
   };
 
@@ -41,10 +45,8 @@ function Item({ item }: { item: Todo }) {
   };
   const handleInputChange = (e) => {
     // setTodos((prevTodos) => prevTodos.map((todo) => (todo.id === item.id ? { ...todo, title: e.target.value } : todo)));
-  };
-  const inputDelete = () => {
-    // setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== item.id));
-  };
+
+  }
   return (
     <li
       id={item?.id}
@@ -59,11 +61,40 @@ function Item({ item }: { item: Todo }) {
             id="edit-todo"
             defaultValue={item?.title}
             onBlur={handleInputBlur}
-            onChange={handleInputChange}
+            onChange={() => useTodoStore.getState().completeTodo(item.id)}
             className="h-full w-full border-0 outline-transparent text-[16px] bg-[#fefdf2] text-[#c2b39a] p-3"
           />
-          <button>Save</button>
-          <button>Cancel</button>
+          <button >
+            <span className="absolute overflow-hidden whitespace-nowrap h-[1px] w-[1px]"
+            style={{ clip: "rect(1px, 1px, 1px, 1px)" }}
+            
+            >update
+            </span>
+          <svg xmlns="http://www.w3.org/2000/svg" 
+               width="20" 
+               height="20" 
+               fill="currentColor" 
+               className="bi bi-check2" 
+               viewBox="0 0 16 16">
+            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+          </svg>
+          </button>
+          <button>
+            <span className="absolute overflow-hidden whitespace-nowrap h-[1px] w-[1px]"
+            style={{ clip: "rect(1px, 1px, 1px, 1px)" }}
+            >
+              cancel
+              </span>
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                 width="16" 
+                 height="16" 
+                 fill="currentColor" 
+                 className="bi bi-x-lg" 
+                 viewBox="0 0 16 16">
+              <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+              </svg>
+            
+          </button>
         </div>
       ) : (
         <>
@@ -88,7 +119,7 @@ function Item({ item }: { item: Todo }) {
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
-                fill="#c2b39a"
+                fill="gray"
                 className="bi bi-pencil-square"
                 viewBox="0 0 16 16"
               >
@@ -99,7 +130,7 @@ function Item({ item }: { item: Todo }) {
                 />
               </svg>
             </button>
-            <button onClick={inputDelete}>
+            <button onClick={() => useTodoStore.getState().deleteTodo(item.id)}>
               <span
                 className="absolute overflow-hidden whitespace-nowrap h-[1px] w-[1px]"
                 style={{ clip: "rect(1px, 1px, 1px, 1px)" }}
@@ -110,7 +141,7 @@ function Item({ item }: { item: Todo }) {
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
-                fill="#c2b39a"
+                fill="gray"
                 className="bi bi-trash3-fill"
                 viewBox="0 0 16 16"
               >
