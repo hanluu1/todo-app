@@ -5,16 +5,18 @@ export interface Todo {
   is_completed: boolean;
   id: string;
   title: string;
-  
-  
+  tags: {
+    title: string;
+    color: string;
+  }[];
 }
 interface TodoStoreState {
   todos: Todo[];
   setTodos: (data: Todo[]) => void;
   addTodo: (todo: Todo) => void;
   completeTodo: (id: string) => void;
-  deleteTodo:(id: string) => void;
-  updateTodo:(id: string, title: string) => void;
+  deleteTodo: (id: string) => void;
+  updateTodo: (id: string, data: any) => void;
 }
 
 export const useTodoStore = create<TodoStoreState>()(
@@ -34,22 +36,19 @@ export const useTodoStore = create<TodoStoreState>()(
       },
       deleteTodo: (id: string) => {
         set((state) => ({
-          todos: state.todos.filter((todo)=> todo.id !== id),
-
+          todos: state.todos.filter((todo) => todo.id !== id),
         }));
       },
-      updateTodo: (id: string, title: string) => {
+      updateTodo: (id: string, data: any) => {
         set((state) => ({
-          todos: state.todos.map((todo) => (todo.id === id ? {...todo, title} : todo))
-        }))
+          todos: state.todos.map((todo) => (todo.id === id ? { ...todo, ...data } : todo)),
+        }));
       },
-      
     }),
-        
+
     {
       version: 1,
       name: "todo-storage",
     }
   )
 );
-
