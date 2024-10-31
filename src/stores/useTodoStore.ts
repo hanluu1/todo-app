@@ -6,6 +6,7 @@ export interface Todo {
   id: string;
   title: string;
   
+  
 }
 interface TodoStoreState {
   todos: Todo[];
@@ -41,7 +42,8 @@ export const useTodoStore = create<TodoStoreState>()(
         set((state) => ({
           todos: state.todos.map((todo) => (todo.id === id ? {...todo, title} : todo))
         }))
-      }
+      },
+      
     }),
         
     {

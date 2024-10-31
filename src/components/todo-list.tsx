@@ -1,7 +1,7 @@
 "use client";
 import { Todo, useTodoStore } from "@/stores";
 import React, { useRef, useState } from "react";
-import { ExclamationIcon, PencilAltIcon, TrashIcon, CheckIcon, XIcon } from "@heroicons/react/outline";
+import { ExclamationIcon, PencilAltIcon, TrashIcon, CheckIcon, XIcon, TagIcon } from "@heroicons/react/outline";
 import { Description, Dialog, DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react";
 
 import clsx from "clsx";
@@ -74,6 +74,7 @@ function Item({ item }: { item: Todo }) {
           <div className="flex items-center gap-1">
             <PencilAltIcon className="w-5 cursor-pointer" onClick={() => setEditing(true)} />
             <TrashIcon className="w-5 text-red-500 cursor-pointer" onClick={() => setIsOpen(true)} />
+            <TagIcon className="w-5 text-blue-400 cursor-pointer"/>
           </div>
         </>
       )}
