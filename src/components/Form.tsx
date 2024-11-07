@@ -10,7 +10,8 @@ export function Form() {
     if(inputText.trim().length>0){
     useTodoStore.getState().addTodo({ title: inputText, 
                                       id: self.crypto.randomUUID(), 
-                                      is_completed: false 
+                                      is_completed: false ,
+                                      
                                     });
     setInputText("");
     }
