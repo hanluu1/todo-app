@@ -35,7 +35,7 @@ function Item({ item }: { item: Todo }) {
   return (
     <li
       id={item?.id}
-      className="flex justify-between items-center w-full max-w-96 text-sm bg-[#fefdf2] text-[#c2b39a] p-3"
+      className="flex justify-between items-center h-12 w-full max-w-96 text-sm bg-[#fefdf2] text-[#c2b39a] p-3"
     >
       {editing ? (
         <div className="flex items-center w-full" onSubmit={handleInputSubmit}>
