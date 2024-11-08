@@ -15,18 +15,13 @@ export function TodoItem({ item }: { item: Todo }) {
 
   const inputRef = useRef(null);
 
-  const handleInputSubmit = (event) => {
-    event.preventDefault();
-    setEditing(false);
-  };
-
   return (
     <li
       id={item?.id}
       className="flex justify-between items-center h-12 w-full max-w-96 text-sm bg-[#fefdf2] text-[#c2b39a] p-3"
     >
       {editing ? (
-        <div className="flex items-center w-full" onSubmit={handleInputSubmit}>
+        <div className="flex items-center w-full">
           <input
             ref={inputRef}
             type="text"

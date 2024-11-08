@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Form } from "@/components/form";
+import { Form } from "@/components/Form";
 import { Header } from "@/components/header";
 import { TodoHero } from "@/components/todo-hero";
 import "./styles.css";

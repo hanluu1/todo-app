@@ -11,7 +11,7 @@ export function Form() {
     useTodoStore.getState().addTodo({ title: inputText, 
                                       id: self.crypto.randomUUID(), 
                                       is_completed: false ,
-                                      
+                                      tags: []
                                     });
     setInputText("");
     }
