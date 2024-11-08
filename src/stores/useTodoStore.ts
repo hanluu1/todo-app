@@ -27,20 +27,37 @@ interface TodoStoreState {
   deleteTag: (title: string) => void;
 }
 
-
+const TAG = [
+  {
+    title: "Workout",
+    color: "#0de040",
+  },
+  {
+    title: "Study",
+    color: "#0d8787",
+  },
+  {
+    title: "Work In Office",
+    color: "#0de040",
+  },
+  {
+    title: "Meeting",
+    color: "#0d8787",
+  },
+];
 export const useTodoStore = create<TodoStoreState>()(
   persist(
     (set) => ({
       todos: [],
-      tags: [],
+      tags: TAG,
       setTodos: (data: Todo[]) => {
         set({ todos: data });
       },
       addTodo: (todo: Todo) => {
         set((state) => ({ todos: [...state.todos, todo] })); // replace
       },
-      addTag: (tag: Tag) =>{
-        set((state)=>({tags: [...state.tags, tag]}));
+      addTag: (tag: Tag) => {
+        set((state) => ({ tags: [...state.tags, tag] }));
       },
       completeTodo: (id: string) => {
         set((state) => ({
@@ -58,16 +75,18 @@ export const useTodoStore = create<TodoStoreState>()(
         }));
       },
       editTag: (title: string, newTitle: string, newColor: string) => {
-        set((state) =>({ tags: state.tags.map((tag) => tag.title === title ? {...tag, title: newTitle, color: newColor} : tag)}));
+        set((state) => ({
+          tags: state.tags.map((tag) => (tag.title === title ? { ...tag, title: newTitle, color: newColor } : tag)),
+        }));
       },
       deleteTag: (title: string) =>
         set((state) => ({
-        tags: state.tags.filter((tag) => tag.title !== title),
-    })),
+          tags: state.tags.filter((tag) => tag.title !== title),
+        })),
     }),
 
     {
-      version: 1,
+      version: 2,
       name: "todo-storage",
     }
   )

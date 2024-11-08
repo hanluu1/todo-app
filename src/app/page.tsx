@@ -3,10 +3,10 @@ import React from "react";
 import { Form } from "@/components/form";
 import { Header } from "@/components/header";
 import { TodoHero } from "@/components/todo-hero";
-import { TodoList } from "@/components/todo-list";
 import "./styles.css";
 import "./output.css";
 import { useTodoStore } from "@/stores";
+import { TodoList } from "@/modules/todo-list";
 
 function Home() {
   const todos = useTodoStore((state) => state.todos);
