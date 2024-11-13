@@ -18,17 +18,18 @@ interface Tag {
 
 interface TodoStoreState {
   todos: Todo[];
-  tags: Tag[];
-  status: string[];
   setTodos: (data: Todo[]) => void;
   addTodo: (todo: Todo) => void;
-  addTag: (tag: Tag) => void;
   completeTodo: (id: string) => void;
   deleteTodo: (id: string) => void;
   updateTodo: (id: string, data: any) => void;
+  //
+  tags: Tag[];
+  addTag: (tag: Tag) => void;
   editTag: (title: string, newTitle: string, newColor: string) => void;
   deleteTag: (title: string) => void;
-  updateStatus: (id: string, status: string) => void;
+  //
+  status: string[];
 }
 
 const TAG = [
@@ -50,14 +51,12 @@ const TAG = [
   },
 ];
 
-const statusOption = ["To do", "In progress", "Completed"];
+const STATUS_PRESET = ["To do", "In progress", "Completed"];
 
 export const useTodoStore = create<TodoStoreState>()(
   persist(
     (set) => ({
       todos: [],
-      tags: TAG,
-      status: statusOption,
       setTodos: (data: Todo[]) => {
         set({ todos: data });
       },
@@ -82,6 +81,8 @@ export const useTodoStore = create<TodoStoreState>()(
           todos: state.todos.map((todo) => (todo.id === id ? { ...todo, ...data } : todo)),
         }));
       },
+      //
+      tags: TAG,
       editTag: (title: string, newTitle: string, newColor: string) => {
         set((state) => ({
           tags: state.tags.map((tag) => (tag.title === title ? { ...tag, title: newTitle, color: newColor } : tag)),
@@ -92,14 +93,8 @@ export const useTodoStore = create<TodoStoreState>()(
           tags: state.tags.filter((tag) => tag.title !== title),
         }));
       },
-      updateStatus: (id: String, status:string) => {
-        set((state) => ({
-          todos: state.todos.map((todo) => todo.id === id ? { ...todo, status } : todo
-          ),
-        }))
-      }
-      
-      
+      //
+      status: STATUS_PRESET,
     }),
 
     {
