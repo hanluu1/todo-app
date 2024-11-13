@@ -3,6 +3,7 @@
 import { useTodoStore } from "@/stores";
 import React, { useState } from "react";
 import { PlusIcon } from "@heroicons/react/outline";
+
 export function Form() {
   const [inputText, setInputText] = useState("");
 

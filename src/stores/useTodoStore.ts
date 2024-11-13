@@ -9,14 +9,17 @@ export interface Todo {
     title: string;
     color: string;
   }[];
+  status: string;
 }
 interface Tag {
   title: string;
   color: string;
 }
+
 interface TodoStoreState {
   todos: Todo[];
   tags: Tag[];
+  status: string[];
   setTodos: (data: Todo[]) => void;
   addTodo: (todo: Todo) => void;
   addTag: (tag: Tag) => void;
@@ -25,6 +28,7 @@ interface TodoStoreState {
   updateTodo: (id: string, data: any) => void;
   editTag: (title: string, newTitle: string, newColor: string) => void;
   deleteTag: (title: string) => void;
+  updateStatus: (id: string, status: string) => void;
 }
 
 const TAG = [
@@ -45,11 +49,15 @@ const TAG = [
     color: "#0d8787",
   },
 ];
+
+const statusOption = ["To do", "In progress", "Completed"];
+
 export const useTodoStore = create<TodoStoreState>()(
   persist(
     (set) => ({
       todos: [],
       tags: TAG,
+      status: statusOption,
       setTodos: (data: Todo[]) => {
         set({ todos: data });
       },
@@ -79,10 +87,19 @@ export const useTodoStore = create<TodoStoreState>()(
           tags: state.tags.map((tag) => (tag.title === title ? { ...tag, title: newTitle, color: newColor } : tag)),
         }));
       },
-      deleteTag: (title: string) =>
+      deleteTag: (title: string) => {
         set((state) => ({
           tags: state.tags.filter((tag) => tag.title !== title),
-        })),
+        }));
+      },
+      updateStatus: (id: String, status:string) => {
+        set((state) => ({
+          todos: state.todos.map((todo) => todo.id === id ? { ...todo, status } : todo
+          ),
+        }))
+      }
+      
+      
     }),
 
     {

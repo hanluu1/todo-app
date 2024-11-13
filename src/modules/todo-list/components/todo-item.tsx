@@ -5,15 +5,21 @@ import { useTodoStore } from "@/stores";
 import { DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react";
 import { Dialog } from "@headlessui/react";
 import { TagSelectModal } from "./tag-select-modal";
-import { ExclamationIcon, TagIcon, PencilAltIcon, TrashIcon, CheckIcon, XIcon } from "@heroicons/react/outline";
+import { StatusSelectModal} from "./status-select-modal";
+import { ExclamationIcon, TagIcon, PencilAltIcon, TrashIcon, CheckIcon, XIcon, StarIcon } from "@heroicons/react/outline";
 
-export function TodoItem({ item }: { item: Todo }) {
+export function TodoItem({ item}: { item: Todo}) {
   const [editing, setEditing] = useState(false);
   const [inputText, setInputText] = useState(item.title);
   const [isOpen, setIsOpen] = useState(false);
   const [showTagModal, setShowTagModal] = useState(false);
+  const [statusOption, setStatusOption] = useState(false);
 
   const inputRef = useRef(null);
+  
+  const handleStatus = () => {
+    setStatusOption(false);
+  };
 
   return (
     <li
@@ -54,14 +60,20 @@ export function TodoItem({ item }: { item: Todo }) {
         <div className="flex w-full flex-col">
           <div className="flex items-center justify-between">
             <button
-              className="flex items-center border border-gray-50 text-[#3c4049] gap-2 text-sm "
-              onClick={() => useTodoStore.getState().completeTodo(item.id)}
+              className="flex items-center r border-gray-50 text-[#3c4049] gap-2 text-sm "
+              onClick={()=> setStatusOption(!statusOption)}
             >
-              <div
-                className={clsx("w-5 h-5 rounded-full", item.is_completed ? "bg-gray-500" : "border border-gray-500")}
+              <StarIcon
+                className="w-5 h-5 text-yellow-500"
               />
-              <p style={item.is_completed ? { textDecoration: "line-through" } : {}}>{item?.title}</p>
+              <p>{item?.title}</p>
             </button>
+            {statusOption && (<StatusSelectModal todo={item} 
+            isOpen={statusOption}
+            onClose={()=>setStatusOption(false)}
+            onStatusChange={handleStatus}
+            
+          />)}
             <div className="flex items-center gap-1">
               <PencilAltIcon className="w-5 cursor-pointer" onClick={() => setEditing(true)} />
               <TrashIcon className="w-5 text-red-500 cursor-pointer" onClick={() => setIsOpen(true)} />
