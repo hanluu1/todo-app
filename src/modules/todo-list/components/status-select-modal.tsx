@@ -31,11 +31,11 @@ export const StatusSelectModal = ({
   return (
     <div
       ref={ref}
-      className="absolute right-[100%] ml-2 bg-white border border-gray-200 rounded shadow-md z-10 p-2 w-40 text-center"
+      className="absolute right-[100%] bg-white ml-2 border border-gray-200 rounded shadow-md p-1 w-full justify-center"
     >
       {status?.map((item) => (
         <button
-          className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-100"
+          className="block w-full px-4 py-2 text-center text-sm hover:bg-yellow-200 text-black"
           onClick={() => onStatusChange(item)}
           key={item}
         >

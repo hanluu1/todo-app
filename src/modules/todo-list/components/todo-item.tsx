@@ -1,11 +1,10 @@
 import { useState, useRef } from "react";
-import clsx from "clsx";
 import { Todo } from "@/stores";
 import { useTodoStore } from "@/stores";
 import { DialogBackdrop, DialogPanel, DialogTitle } from "@headlessui/react";
 import { Dialog } from "@headlessui/react";
 import { TagSelectModal } from "./tag-select-modal";
-import { StatusSelectModal } from "./status-select-modal";
+import { StatusOptions } from "./status-options";
 import {
   ExclamationIcon,
   TagIcon,
@@ -15,7 +14,6 @@ import {
   XIcon,
   StarIcon,
 } from "@heroicons/react/outline";
-import { StarIcon as StartIconSolid } from "@heroicons/react/solid";
 
 export function TodoItem({ item }: { item: Todo }) {
   const [editing, setEditing] = useState(false);
@@ -23,17 +21,13 @@ export function TodoItem({ item }: { item: Todo }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showTagModal, setShowTagModal] = useState(false);
   const [statusOption, setStatusOption] = useState(false);
-
+  
   const inputRef = useRef(null);
-
-  const handleStatus = () => {
-    setStatusOption(false);
-  };
 
   return (
     <li
       id={item?.id}
-      className="flex justify-between items-center h-12 w-full max-w-96 text-sm bg-[#fefdf2] text-[#c2b39a] p-3"
+      className="flex justify-between items-center w-full max-w-96 text-sm bg-[#fefdf2] text-[#c2b39a] p-3"
     >
       {editing ? (
         <div className="flex items-center w-full">
@@ -67,41 +61,18 @@ export function TodoItem({ item }: { item: Todo }) {
         </div>
       ) : (
         <div className="flex w-full flex-col">
-          <div className="flex items-center justify-between">
-            <button
-              className="flex items-center r border-gray-50 text-[#3c4049] gap-2 text-sm "
-              onClick={() => setStatusOption(!statusOption)}
-            >
-              {item.status === "Completed" ? (
-                <StartIconSolid className="w-5 h-5 text-yellow-500" />
-              ) : item.status === "In progress" ? (
-                <StarIcon className="w-5 h-5 text-yellow-500" />
-              ) : (
-                <StarIcon className="w-5 h-5 text-gray-500" />
-              )}
-              <p>{item?.title}</p>
-            </button>
-            {statusOption && (
-              <StatusSelectModal
-                isOpen={statusOption}
-                onClose={() => setStatusOption(false)}
-                onStatusChange={(value) => {
-                  useTodoStore.getState().updateTodo(item.id, { status: value });
-                  setStatusOption(false);
-                }}
-              />
-            )}
+          <StatusOptions item={item}/>
             <div className="flex items-center gap-1">
               <PencilAltIcon className="w-5 cursor-pointer" onClick={() => setEditing(true)} />
               <TrashIcon className="w-5 text-red-500 cursor-pointer" onClick={() => setIsOpen(true)} />
               <TagIcon className="w-5 text-blue-400 cursor-pointer" onClick={() => setShowTagModal(true)} />
             </div>
-          </div>
+          
           {!!item.tags?.length && (
-            <div className="flex p-2 flex-wrap">
+            <div className="flex p-2 flex-wrap gap-2">
               {item.tags.map((tag) => (
                 <div
-                  className="px-4 text-white py-1 rounded-full"
+                  className="px-4 text-yellow-100 py-1 rounded-full"
                   key={tag.title}
                   style={{
                     backgroundColor: tag.color,

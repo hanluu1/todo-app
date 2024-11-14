@@ -23,39 +23,36 @@ interface TodoStoreState {
   completeTodo: (id: string) => void;
   deleteTodo: (id: string) => void;
   updateTodo: (id: string, data: any) => void;
-  //
+  
   tags: Tag[];
   addTag: (tag: Tag) => void;
   editTag: (title: string, newTitle: string, newColor: string) => void;
   deleteTag: (title: string) => void;
-  //
+  
   status: string[];
 }
 
 const TAG = [
   {
     title: "Workout",
-    color: "#0de040",
+    color: "#FFDBDA",
   },
   {
     title: "Study",
-    color: "#0d8787",
-  },
-  {
-    title: "Work In Office",
-    color: "#0de040",
+    color: "#bee3db",
   },
   {
     title: "Meeting",
-    color: "#0d8787",
+    color: "#555b6e",
   },
 ];
 
-const STATUS_PRESET = ["To do", "In progress", "Completed"];
+const STATUS_PRESET = ["Ready", "In progress", "Completed"];
 
 export const useTodoStore = create<TodoStoreState>()(
   persist(
     (set) => ({
+      //add task store
       todos: [],
       setTodos: (data: Todo[]) => {
         set({ todos: data });
@@ -81,7 +78,7 @@ export const useTodoStore = create<TodoStoreState>()(
           todos: state.todos.map((todo) => (todo.id === id ? { ...todo, ...data } : todo)),
         }));
       },
-      //
+      //tag store
       tags: TAG,
       editTag: (title: string, newTitle: string, newColor: string) => {
         set((state) => ({
@@ -93,12 +90,12 @@ export const useTodoStore = create<TodoStoreState>()(
           tags: state.tags.filter((tag) => tag.title !== title),
         }));
       },
-      //
+      //status store
       status: STATUS_PRESET,
     }),
 
     {
-      version: 2,
+      version: 1,
       name: "todo-storage",
     }
   )
