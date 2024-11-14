@@ -1,13 +1,13 @@
-import React from "react";
+import React from 'react';
 
 export function TodoHero({ todosCompleted, totalTodos }: { todosCompleted: number; totalTodos: number }) {
   return (
-    <section className="border border-black rounded-xl flex justify-around items-center self-center w-full max-w-96 p-5">
+    <section className="flex w-full max-w-96 items-center justify-around self-center rounded-xl border border-black p-5">
       <div className="">
         <p className="text-3xl text-zinc-600">Task Done</p>
         <p className="text-xl text-zinc-600">Keep it up</p>
       </div>
-      <div className="text-zinc-600 bg-[#E5F1F3] w-[150px] h-[150px] rounded-full text-5xl flex items-center justify-center text-center">
+      <div className="flex size-[150px] items-center justify-center rounded-full bg-[#E5F1F3] text-center text-5xl text-zinc-600">
         {todosCompleted}/{totalTodos}
       </div>
     </section>

@@ -1,23 +1,10 @@
-'use client';
-
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { useTodoStore } from '@/stores';
 
 import { TodoItem } from './todo-item';
 
-export function TodoList() {
-  return (
-    <div className="grid grid-cols-4 gap-3">
-      <List status="" />
-      <List status="Ready" />
-      <List status="In progress" />
-      <List status="Completed" />
-    </div>
-  );
-}
-
-const List = ({ status }: { status: string }) => {
+export const TodoList = ({ status }: { status: string }) => {
   const todos = useTodoStore((state) => state.todos);
 
   const displayList = useMemo(
