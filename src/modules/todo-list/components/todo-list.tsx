@@ -1,7 +1,10 @@
-"use client";
-import { useTodoStore } from "@/stores";
-import React, { useMemo } from "react";
-import { TodoItem } from "./todo-item";
+'use client';
+
+import React, { useMemo } from 'react';
+
+import { useTodoStore } from '@/stores';
+
+import { TodoItem } from './todo-item';
 
 export function TodoList() {
   return (
@@ -19,18 +22,20 @@ const List = ({ status }: { status: string }) => {
 
   const displayList = useMemo(
     () => todos.filter((item) => (status ? item.status === status : !item.status)),
-    [todos, status]
+    [todos, status],
   );
   return (
     <div className="flex flex-col items-center py-4  ">
-      <div className=" w-full max-w-96 bg-[#fefdf2] border-solid border-2  text-zinc-600 font-semibold text-l p-2 text-center rounded">{status || "To do"}</div>
-      <ol className="self-center w-full max-w-96  flex flex-col items-center my-6 gap-6 pb-6 relative">
+      <div className="w-full max-w-96 rounded border-2 border-solid  bg-[#fefdf2] p-2 text-center text-lg font-semibold text-zinc-600">
+        {status || 'To do'}
+      </div>
+      <ol className="relative my-6 flex  w-full max-w-96 flex-col items-center gap-6 self-center pb-6">
         {todos && todos.length > 0 ? (
           <>
             {displayList.map((item, index) => (
               <TodoItem key={index} item={item} />
             ))}
-            <p className="text-zinc-600 mt-4"></p>
+            <p className="mt-4 text-zinc-600"></p>
           </>
         ) : (
           <p className="text-zinc-600"></p>
