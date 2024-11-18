@@ -9,15 +9,15 @@ export const StatusOptions = ({ item }: { item: Todo })=> {
     return (
         <div className="flex items-center justify-between">
             <button
-              className="flex items-center r border-gray-50 text-[#3c4049] gap-2 text-sm "
+              className="flex items-center border-gray-50 text-[#3c4049] gap-2 text-sm "
               onClick={() => setStatusOption(!statusOption)}
             >
               {item.status === "Completed" ? (
                 <StartIconSolid className="w-5 h-5 text-yellow-500" />
               ) : item.status === "In progress" ? (
-                <StarIcon className="w-5 h-5 text-yellow-500" />
+                <StarIcon className="w-5 h-5 text-pink-300 " />
               ) : (
-                <StarIcon className="w-5 h-5 text-gray-500" />
+                <StarIcon className="w-5 h-5 stroke-yellow-500 fill-none" />
               )}
               <p>{item?.title}</p>
             </button>
