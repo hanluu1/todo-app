@@ -1,13 +1,13 @@
-import { CheckIcon, ExclamationIcon, PencilAltIcon, TagIcon, TrashIcon, XIcon } from '@heroicons/react/outline';
+import { CheckIcon, PencilAltIcon, TagIcon, TrashIcon, XIcon } from '@heroicons/react/outline';
 import { useRef, useState } from 'react';
 
 import { type Todo, useTodoStore } from '@/stores';
 
+import { DeletePanel } from './delete-panel';
 import { StatusOptions } from './status-options';
 import { TagSelectModal } from './tag-select-modal';
-import { DeletePanel } from './delete-panel';
 
-export function TodoItem({ item } : { item: Todo }) {
+export function TodoItem({ item }: { item: Todo }) {
   const [editing, setEditing] = useState(false);
   const [inputText, setInputText] = useState(item.title);
   const [isOpen, setIsOpen] = useState(false);
@@ -51,7 +51,7 @@ export function TodoItem({ item } : { item: Todo }) {
           </button>
         </div>
       ) : (
-        <div className="flex w-full justify-between flex-row">
+        <div className="flex w-full flex-row justify-between">
           <StatusOptions item={item} />
           <div className="flex items-center gap-1">
             <PencilAltIcon className="w-5 cursor-pointer" onClick={() => setEditing(true)} />
@@ -76,7 +76,7 @@ export function TodoItem({ item } : { item: Todo }) {
           )}
         </div>
       )}
-      <DeletePanel item ={item} isOpen={isOpen} onClose= {() => setIsOpen(false) }/>
+      <DeletePanel item={item} isOpen={isOpen} onClose={() => setIsOpen(false)} />
       <TagSelectModal data={item} isOpen={showTagModal} onClose={() => setShowTagModal(false)} />
     </li>
   );
