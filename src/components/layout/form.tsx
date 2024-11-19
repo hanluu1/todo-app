@@ -35,7 +35,7 @@ export function Form() {
           }}
         />
       </label>
-      <button className="flex h-12 w-[10%] items-center justify-center rounded-lg bg-[#C4F9F6]" onClick={_onSubmit}>
+      <button className="flex h-12 w-[10%] items-center justify-center rounded-lg border border-black" onClick={_onSubmit}>
         <PlusIcon className="w-5 text-black" />
       </button>
     </div>
