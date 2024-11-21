@@ -62,7 +62,9 @@ export const TagSelectModal = ({ data, isOpen, onClose }: { data: Todo; isOpen: 
                   <BackspaceIcon className="flex-shrink-0 w-5 h-5 text-red-600 cursor-pointer" />
                 </div>
                 {/*form to create new tag  */}
-                {showForm && (
+                {showForm
+                
+                && (
                   <div className="mt-4 p-4 bg-white rounded-lg shadow-md">
                     <h3 className="text-lg text-black font-medium">Input new tag</h3>
                     <div className="flex flex-row">

@@ -1,6 +1,7 @@
 import { StarIcon, StarIcon as StartIconSolid } from '@heroicons/react/solid';
 import { useState } from 'react';
 
+
 import type { Todo } from '@/stores';
 import { useTodoStore } from '@/stores';
 
@@ -40,3 +41,4 @@ export const StatusOptions = ({ item }: { item: Todo }) => {
     </div>
   );
 };
+

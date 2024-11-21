@@ -18,7 +18,7 @@ export function TodoItem({ item }: { item: Todo }) {
   return (
     <li
       id={item?.id}
-      className="flex w-full max-w-96 items-center justify-between bg-[#fefdf2] p-3 text-sm text-[#c2b39a]"
+      className="flex rounded-lg w-full items-center justify-between bg-white p-3 text-sm text-orange-200"
     >
       {editing ? (
         <div className="flex w-full items-center">
@@ -29,7 +29,7 @@ export function TodoItem({ item }: { item: Todo }) {
             id="edit-todo"
             defaultValue={item?.title}
             onChange={(e) => setInputText(e.target.value)}
-            className="size-full border-0 bg-[#fefdf2] p-3 text-[16px] text-red-300 outline-transparent"
+            className="size-full border-0 bg-white p-3 text-[16px] text-red-300 outline-transparent"
           />
           <button>
             <CheckIcon
@@ -51,7 +51,7 @@ export function TodoItem({ item }: { item: Todo }) {
           </button>
         </div>
       ) : (
-        <div className="flex w-full flex-row justify-between">
+        <div className="flex w-full justify-between flex-row">
           <StatusOptions item={item} />
           <div className="flex items-center gap-1">
             <PencilAltIcon className="w-5 cursor-pointer" onClick={() => setEditing(true)} />

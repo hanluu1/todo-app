@@ -47,7 +47,7 @@ const TAG = [
   },
 ];
 
-const STATUS_PRESET = ["Ready", "In progress", "Completed"];
+const STATUS_PRESET = [ "In progress", "Completed"];
 
 export const useTodoStore = create<TodoStoreState>()(
   persist(
