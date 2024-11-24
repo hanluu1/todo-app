@@ -11,12 +11,11 @@ export const TodoList = ({ status }: { status: string }) => {
     [todos, status],
   );
   return (
-    <div className="relative flex flex-col w-full py-3  ">
-      <div className="flex justify-center bg-white max-w-24 rounded-full border border-black p-2 text-sm font-bold text-zinc-600">
+    <div className="relative flex w-full flex-col py-3  ">
+      <div className="flex max-w-24 justify-center rounded-full border border-black bg-white p-2 text-sm font-bold text-zinc-600">
         {status || 'To do'}
-        
       </div>
-      <ol className="flex flex-col w-full items-start gap-4 self-center pt-3">
+      <ol className="flex w-full flex-col items-start gap-4 self-center pt-3">
         {todos && todos.length > 0 ? (
           <>
             {displayList.map((item, index) => (

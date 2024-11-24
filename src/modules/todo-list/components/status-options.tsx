@@ -1,7 +1,6 @@
 import { StarIcon, StarIcon as StartIconSolid } from '@heroicons/react/solid';
 import { useState } from 'react';
 
-
 import type { Todo } from '@/stores';
 import { useTodoStore } from '@/stores';
 
@@ -10,7 +9,7 @@ import { StatusSelectModal } from './status-select-modal';
 export const StatusOptions = ({ item }: { item: Todo }) => {
   const [statusOption, setStatusOption] = useState(false);
   return (
-    <div className="relative flex items-center gap-2 text-black justify-between">
+    <div className="relative flex items-center justify-between gap-2 text-black">
       <button
         className="flex items-center gap-2 border-gray-50 text-sm text-gray-400"
         onClick={() => setStatusOption(!statusOption)}
@@ -22,7 +21,6 @@ export const StatusOptions = ({ item }: { item: Todo }) => {
         ) : (
           <StarIcon className="size-5 fill-none stroke-yellow-500" />
         )}
-        
       </button>
       <p>{item?.title}</p>
       {statusOption && (
@@ -41,4 +39,3 @@ export const StatusOptions = ({ item }: { item: Todo }) => {
     </div>
   );
 };
-

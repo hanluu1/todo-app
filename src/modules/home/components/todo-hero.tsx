@@ -1,22 +1,32 @@
 import React from 'react';
-import {Form} from './form'
-import { SearchBar } from './searchbar';
-import { useState } from 'react';
 
-export function TodoHero({ todosCompleted, totalTodos }: { todosCompleted: number; totalTodos: number }) {
- 
+import { useTodoStore } from '@/stores';
+
+import { Form } from './form';
+import { SearchBar } from './searchbar';
+
+export function TodoHero({
+  searchString,
+  setSearchString,
+}: {
+  searchString: string;
+  setSearchString: (query: string) => void;
+}) {
+  const todos = useTodoStore((state) => state.todos);
+
+  const todosCompleted = todos.filter((todos) => todos.is_completed === true).length;
+  const totalTodos = todos.length;
 
   return (
-    <section className="flex w-full gap-10 rounded-xl pt-3 pb-5">
-      <Form/>
-      <SearchBar/>
-      <div className="flex w-96 items-center justify-between bg-pink-300 rounded-lg gap-2 pl-2 pr-2">
+    <section className="flex w-full gap-10 rounded-xl pb-5 pt-3">
+      <Form />
+      <SearchBar searchString={searchString} setSearchString={setSearchString} />
+      <div className="flex w-96 items-center justify-between gap-2 rounded-lg bg-pink-300 px-2">
         <p className="text-sm font-semibold text-current">Task Complete</p>
-        <div className="flex text-black bg-white border border-white text-sm h-7 w-7 items-center justify-center rounded-full ">
-        {todosCompleted}/{totalTodos}
+        <div className="flex size-7 items-center justify-center rounded-full border border-white bg-white text-sm text-black ">
+          {todosCompleted}/{totalTodos}
         </div>
       </div>
-      
     </section>
   );
 }
