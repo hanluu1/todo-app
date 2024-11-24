@@ -1,2 +1,2 @@
-export * from './todo-hero';
 export * from './form';
+export * from './total-task';

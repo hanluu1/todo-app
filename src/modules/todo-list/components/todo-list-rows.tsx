@@ -2,7 +2,8 @@
 
 import React, { useMemo, useState } from 'react';
 
-import { TodoHero } from '@/modules/home';
+import { Form, TotalTask } from '@/modules/home';
+import { SearchBar } from '@/modules/home/components/searchbar';
 import { useTodoStore } from '@/stores';
 
 import { TodoItem } from './todo-item';
@@ -18,7 +19,11 @@ export function TodoListRows() {
 
   return (
     <div className="flex flex-col">
-      <TodoHero searchString={searchString} setSearchString={setSearchString} />
+      <div className="flex w-full gap-10 rounded-xl pb-5 pt-3">
+        <Form />
+        <SearchBar searchString={searchString} setSearchString={setSearchString} />
+        <TotalTask />
+      </div>
       <div className="flex flex-col gap-3 pb-20">
         {searchString ? (
           <ol className="flex w-full flex-col items-start gap-4 self-center pt-3">
