@@ -58,10 +58,10 @@ export function TodoItem({ item }: { item: Todo }) {
           <div className="flex flex-row w-full justify-between items-center cursor-pointer" 
           onClick={()=> setEditing(true)
           }>
-          <div
-            onClick={(e) => {
+            <div
+              onClick={(e) => {
               e.stopPropagation(); 
-              console.log('StatusOptions clicked!');
+              //div
             }}
             >
             <StatusOptions item={item} />
@@ -71,6 +71,7 @@ export function TodoItem({ item }: { item: Todo }) {
               <TrashIcon className="w-5 cursor-pointer text-red-500" onClick={() => setIsOpen(true)} />
               <TagIcon className="w-5 cursor-pointer text-blue-400" onClick={() => setShowTagModal(true)} />
             </div>
+            
           </div>
           {!!item.tags?.length && (
             <div className="flex flex-wrap gap-2 p-2">

@@ -12,20 +12,20 @@ export function Form() {
     if (inputText.trim().length > 0) {
       useTodoStore
         .getState()
-        .addTodo({ title: inputText, id: self.crypto.randomUUID(), is_completed: false, tags: [], status: inputText });
+        .addTodo({ title: inputText, id: self.crypto.randomUUID(), is_completed: false, tags: [], status:'' });
       setInputText('');
     }
   };
 
   return (
-    <div className="mt-9 flex w-full max-w-96 items-center gap-3 self-center">
+    <div className=" flex  w-full max-w-96 items-center gap-3 self-center">
       <label htmlFor="todo" className="w-[90%] text-gray-700 ">
         <input
-          className="h-12 w-full rounded-md p-4 "
+          className=" h-10 w-full rounded-md p-4 "
           type="text"
           name="todo"
           id="todo"
-          placeholder="Write your next task"
+          placeholder="Add Task"
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           onKeyDown={(e) => {
@@ -35,7 +35,7 @@ export function Form() {
           }}
         />
       </label>
-      <button className="flex h-12 w-[10%] items-center justify-center rounded-lg border border-black" onClick={_onSubmit}>
+      <button className="flex h-10 w-[10%] items-center justify-center rounded-lg  bg-orange-100" onClick={_onSubmit}>
         <PlusIcon className="w-5 text-black" />
       </button>
     </div>

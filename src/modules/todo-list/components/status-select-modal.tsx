@@ -38,7 +38,7 @@ export const StatusSelectModal = ({
             Choose Status
             <ChevronDownIcon className="size-4 fill-white/60" />
           </MenuButton>
-          <MenuItems className="absolute origin-top-right rounded-lg border border-white/5 bg-indigo-200 p-1 text-sm/6 text-black transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0">
+          <MenuItems className="absolute z-50 origin-top-right rounded-lg border border-white/5 bg-indigo-200 p-1 text-sm/6 text-black transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0">
             {status.map((item) => (
               <MenuItem key={item}>
                 <button

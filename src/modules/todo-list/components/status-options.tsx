@@ -10,7 +10,7 @@ import { StatusSelectModal } from './status-select-modal';
 export const StatusOptions = ({ item }: { item: Todo }) => {
   const [statusOption, setStatusOption] = useState(false);
   return (
-    <div className="relative flex items-center justify-between">
+    <div className="relative flex items-center gap-2 text-black justify-between">
       <button
         className="flex items-center gap-2 border-gray-50 text-sm text-gray-400"
         onClick={() => setStatusOption(!statusOption)}
@@ -22,9 +22,9 @@ export const StatusOptions = ({ item }: { item: Todo }) => {
         ) : (
           <StarIcon className="size-5 fill-none stroke-yellow-500" />
         )}
-        <p>{item?.title}</p>
+        
       </button>
-
+      <p>{item?.title}</p>
       {statusOption && (
         <StatusSelectModal
           isOpen={statusOption}

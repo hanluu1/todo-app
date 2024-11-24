@@ -1,15 +1,22 @@
 import React from 'react';
+import {Form} from './form'
+import { SearchBar } from './searchbar';
+import { useState } from 'react';
 
 export function TodoHero({ todosCompleted, totalTodos }: { todosCompleted: number; totalTodos: number }) {
+ 
+
   return (
-    <section className="flex w-full max-w-96 items-center justify-around self-center rounded-xl border border-black p-5">
-      <div className="">
-        <p className="text-3xl text-zinc-600">Task Done</p>
-        <p className="text-xl text-zinc-600">Keep it up</p>
-      </div>
-      <div className="flex size-[150px] items-center justify-center rounded-full bg-[#E5F1F3] text-center text-5xl text-zinc-600">
+    <section className="flex w-full gap-10 rounded-xl pt-3 pb-5">
+      <Form/>
+      <SearchBar/>
+      <div className="flex w-96 items-center justify-between bg-pink-300 rounded-lg gap-2 pl-2 pr-2">
+        <p className="text-sm font-semibold text-current">Task Complete</p>
+        <div className="flex text-black bg-white border border-white text-sm h-7 w-7 items-center justify-center rounded-full ">
         {todosCompleted}/{totalTodos}
+        </div>
       </div>
+      
     </section>
   );
 }

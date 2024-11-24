@@ -95,7 +95,7 @@ export const useTodoStore = create<TodoStoreState>()(
     }),
 
     {
-      version: 1,
+      version: 2,
       name: "todo-storage",
     }
   )

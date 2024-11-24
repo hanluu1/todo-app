@@ -7,7 +7,7 @@ import { useTodoStore } from '@/stores';
 import { TodoList } from './todo-list';
 import clsx from 'clsx';
 
-export function TodoListCols() {
+export function TodoListRows() {
   const todos = useTodoStore((state) => state.todos);
   const showInProgress = todos.some((todo) => todo.status === 'In progress');
   const showComplete= todos.some((todo) => todo.status === 'Completed');
@@ -16,7 +16,7 @@ export function TodoListCols() {
 
   return (
  
-    <div className={clsx('flex gap-3 ',
+    <div className={clsx('flex gap-3 pb-20',
       {'flex-col place-items-center': showDefault,
         'flex-col gap-6': !showDefault,
       }
@@ -24,7 +24,9 @@ export function TodoListCols() {
       {showDefault && <TodoList status="" />}
       {!showDefault && (
         <>
+        
         <TodoList status="" />
+        
         {showInProgress && <TodoList status="In progress" />}
         {showComplete && <TodoList status="Completed" />}
         </>

@@ -5,9 +5,9 @@ import './output.css';
 
 import React from 'react';
 
-import { Form, Header } from '@/components/layout';
+import { Header } from '@/components/layout';
 import { TodoHero } from '@/modules/home';
-import { TodoListCols } from '@/modules/todo-list';
+import { TodoListRows } from '@/modules/todo-list';
 import { useTodoStore } from '@/stores';
 
 function Home() {
@@ -19,8 +19,7 @@ function Home() {
     <div className="flex h-screen w-10/12  flex-col sm:max-w-full ">
       <Header />
       <TodoHero todosCompleted={todosCompleted} totalTodos={totalTodos} />
-      <Form />
-      <TodoListCols />
+      <TodoListRows />
     </div>
   );
 }
