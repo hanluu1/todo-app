@@ -19,8 +19,9 @@ export function SearchBar({
           onChange={(e) => setSearchString(e.target.value)}
         />
       </label>
-
-      <button className="flex h-10 w-[10%] items-center justify-center rounded-lg  bg-orange-100" type="button">
+      
+      <button className="flex h-10 w-[10%] items-center justify-center rounded-lg  bg-orange-100" >
+    
         <SearchIcon className="w-5 text-black" />
       </button>
     </div>
