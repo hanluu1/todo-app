@@ -11,7 +11,7 @@
 }
 html,
 body {
-  @apply bg-gradient-to-r from-[#dbf8f8]  to-[#accdf4] flex items-center justify-center w-full h-screen;
+  @apply flex items-center justify-center w-full h-screen;
   font-family: sans-serif;
 }
 

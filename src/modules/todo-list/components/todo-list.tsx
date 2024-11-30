@@ -4,22 +4,17 @@ import { useTodoStore } from '@/stores';
 
 import { TodoItem } from './todo-item';
 
-export const TodoList = ({ status, searchQuery }: { status: string, searchQuery: string }) => {
+export const TodoList = ({ status}: { status: string }) => {
   const todos = useTodoStore((state) => state.todos);
   const displayList = useMemo(
     () => todos.filter((item) => (status ? item.status === status : !item.status)),
     [todos, status],
   );
-  //const filteredTodos = useMemo(() => {
-    //return todos.filter((item) =>
-    //  item.title.toLowerCase().includes(searchQuery.toLowerCase()) 
-   // );
- // }, [todos, searchQuery]);
-
+  
   return (
     <div className="relative flex w-full flex-col py-3  ">
       <div className="flex max-w-24 justify-center rounded-full border border-black bg-white p-2 text-sm font-bold text-zinc-600">
-        {status || 'To do'}
+        {status || 'To Do' }
       </div>
       <ol className="flex w-full flex-col items-start gap-4 self-center pt-3">
         {todos && todos.length > 0 ? (

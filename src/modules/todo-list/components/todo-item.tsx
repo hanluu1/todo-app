@@ -8,7 +8,7 @@ import { StatusOptions } from './status-options';
 import { TagSelectModal } from './tag-select-modal';
 
 
-export function TodoItem({ item }: { item: Todo }) {
+export function TodoItem({ item } : { item: Todo }) {
   const [editing, setEditing] = useState(false);
   const [inputText, setInputText] = useState(item.title);
   const [isOpen, setIsOpen] = useState(false);
