@@ -21,17 +21,19 @@ export function TodoListRows() {
   const [selectedStatus, setSelectedStatus] = useState<string | null>(null); 
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mx-10">
       <div className="flex w-full gap-10 rounded-xl pb-5 pt-3">
         <Form />
         <SearchBar searchString={searchString} setSearchString={setSearchString} />
         <TotalTask />
       </div>
-      <div className="flex flex-row justify-center gap-2">
+      
+
+      <div className="flex flex-row justify-center gap-2 ">
         <button
           className={clsx(
             'flex max-w-24 justify-center rounded-full p-2 text-sm font-bold',
-            selectedStatus === '' ? 'bg-orange-500 text-white' : 'bg-white text-zinc-600',
+            selectedStatus === '' ? 'bg-amber-50 text-black shadow-lg' : 'bg-white text-zinc-600',
           )}
           onClick={() => setSelectedStatus('')}
         >
@@ -40,7 +42,7 @@ export function TodoListRows() {
         <button
           className={clsx(
             'flex max-w-24 justify-center rounded-full p-2 text-sm font-bold',
-            selectedStatus === 'In progress' ? 'bg-blue-500 text-white' : 'bg-white text-zinc-600',
+            selectedStatus === 'In progress' ? 'bg-amber-50 text-black shadow-lg' : 'bg-white text-zinc-600',
           )}
           onClick={() => setSelectedStatus('In progress')}
         >
@@ -49,7 +51,7 @@ export function TodoListRows() {
         <button
           className={clsx(
             'flex max-w-24 justify-center rounded-full p-2 text-sm font-bold',
-            selectedStatus === 'Completed' ? 'bg-emerald-500 text-white' : 'bg-white text-zinc-600',
+            selectedStatus === 'Completed' ? 'bg-amber-50 text-black shadow-lg' : 'bg-white text-zinc-600',
           )}
           onClick={() => setSelectedStatus('Completed')}
         >
@@ -58,7 +60,7 @@ export function TodoListRows() {
         <button
           className={clsx(
             'flex max-w-24 justify-center rounded-full p-2 text-sm font-bold',
-            selectedStatus === null ? 'bg-pink-300 text-white' : 'bg-white text-zinc-600',
+            selectedStatus === null ? 'bg-amber-50 text-black shadow-lg' : 'bg-white text-zinc-600',
           )}
           onClick={() => setSelectedStatus(null)} 
         >

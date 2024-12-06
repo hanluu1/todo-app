@@ -21,7 +21,7 @@ export function Form() {
     <div className=" flex  w-full max-w-96 items-center gap-3 self-center">
       <label htmlFor="todo" className="w-[90%] text-gray-700 ">
         <input
-          className=" h-10 w-full rounded-md p-4 "
+          className=" h-10 w-full rounded-md p-4 dark:bg-gray-600 dark:text-white "
           type="text"
           name="todo"
           id="todo"
@@ -35,8 +35,8 @@ export function Form() {
           }}
         />
       </label>
-      <button className="flex h-10 w-[10%] items-center justify-center rounded-lg  bg-orange-100" onClick={_onSubmit}>
-        <PlusIcon className="w-5 text-black" />
+      <button className="flex h-10 w-[10%] items-center justify-center rounded-lg  bg-orange-100 dark:bg-slate-500" onClick={_onSubmit}>
+        <PlusIcon className="w-5 text-black dark:text-white" />
       </button>
     </div>
   );
