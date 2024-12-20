@@ -16,8 +16,6 @@ function Home() {
       <Header/>
       <ModeToggle/>
       <TodoListRows />
-      
-
     </div>
     
   );

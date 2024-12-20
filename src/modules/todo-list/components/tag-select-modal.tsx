@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { Todo } from "@/stores";
 import { useTodoStore } from "@/stores";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
-import { PlusCircleIcon, PencilAltIcon, BackspaceIcon } from "@heroicons/react/outline";
+import { PlusCircleIcon} from "@heroicons/react/outline";
 
 export const TagSelectModal = ({ data, isOpen, onClose }: { data: Todo; isOpen: boolean; onClose: () => void }) => {
   const [showForm, setShowForm] = useState(false);
@@ -58,8 +58,7 @@ export const TagSelectModal = ({ data, isOpen, onClose }: { data: Todo; isOpen: 
                       setShowForm(true);
                     }}
                   />
-                  <PencilAltIcon className="flex-shrink-0 w-5 h-5 text-sky-400 cursor-pointer" />
-                  <BackspaceIcon className="flex-shrink-0 w-5 h-5 text-red-600 cursor-pointer" />
+                  
                 </div>
                 {/*form to create new tag  */}
                 {showForm

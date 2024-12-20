@@ -64,7 +64,7 @@ export function TodoItem({ item } : { item: Todo }) {
               //div
             }}
             >
-            <StatusOptions item={item} />
+              <StatusOptions item={item} />
             </div>
             <div className="flex items-center gap-1 " >
               <PencilAltIcon className="w-5 cursor-pointer" onClick={() => setEditing(true)} />
@@ -91,6 +91,7 @@ export function TodoItem({ item } : { item: Todo }) {
         </div>
       )}
       <DeletePanel item={item} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+        
       <TagSelectModal data={item} isOpen={showTagModal} onClose={() => setShowTagModal(false)} />
     </li>
   );
