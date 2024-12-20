@@ -58,18 +58,14 @@ export function TodoItem({ item } : { item: Todo }) {
           <div className="flex flex-row w-full justify-between items-center cursor-pointer" 
           onClick={()=> setEditing(true)
           }>
-            <div
-              onClick={(e) => {
-              e.stopPropagation(); 
-              //div
-            }}
-            >
-              <StatusOptions item={item} />
-            </div>
+
+            <StatusOptions item={item} />
             <div className="flex items-center gap-1 " >
               <PencilAltIcon className="w-5 cursor-pointer" onClick={() => setEditing(true)} />
-              <TrashIcon className="w-5 cursor-pointer text-red-500" onClick={() => setIsOpen(true)} />
-              <TagIcon className="w-5 cursor-pointer text-blue-400" onClick={() => setShowTagModal(true)} />
+              <TrashIcon className="w-5 cursor-pointer text-red-500" onClick={(e) => {e.stopPropagation();
+              setIsOpen(true);} }/>
+              <TagIcon className="w-5 cursor-pointer text-blue-400" onClick={(e) => {e.stopPropagation();
+              setShowTagModal(true);}} />
             </div>
             
           </div>
