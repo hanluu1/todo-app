@@ -12,7 +12,11 @@
 html,
 body {
   @apply flex items-center justify-center w-full h-screen;
-  font-family: sans-serif;
+  font-family: var(--font-raleway);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smooth: never;
 }
 
 

@@ -14,9 +14,9 @@ export function TodoItem({ item }: { item: Todo }) {
   const [showModalEdit, setShowModalEdit] = useState(false);
 
   return (
-    <li
+    <div
       id={item?.id}
-      className="flex w-full items-center justify-between rounded-lg bg-white p-3 text-sm text-orange-200"
+      className="flex w-full items-center justify-between rounded-3xl bg-neutral-700/5 p-4 text-xl font-bold text-orange-200"
     >
       <div className="flex w-full flex-col gap-2">
         <div
@@ -61,6 +61,6 @@ export function TodoItem({ item }: { item: Todo }) {
       <ModalEditItem data={item} isOpen={showModalEdit} onClose={() => setShowModalEdit(false)} />
       <DeletePanel item={item} isOpen={isOpen} onClose={() => setIsOpen(false)} />
       <TagSelectModal data={item} isOpen={showTagModal} onClose={() => setShowTagModal(false)} />
-    </li>
+    </div>
   );
 }

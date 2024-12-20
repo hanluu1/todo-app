@@ -1,9 +1,9 @@
 import './styles.css';
 
-import { Inter } from 'next/font/google';
+import clsx from 'clsx';
 import { ThemeProvider } from 'next-themes';
 
-const inter = Inter({ subsets: ['latin'] });
+import { raleway } from '@/assets/fonts';
 
 export const metadata = {
   title: 'Todo App',
@@ -12,13 +12,12 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable}`}>
+    <html lang="en" className={clsx(raleway.variable)}>
+      <body>
         <ThemeProvider enableSystem={true} attribute="class">
           {children}
-        </ThemeProvider></body>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
-
-

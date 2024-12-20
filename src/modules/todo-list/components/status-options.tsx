@@ -11,7 +11,7 @@ export const StatusOptions = ({ item }: { item: Todo }) => {
   return (
     <div className="relative flex items-center justify-between gap-2 text-black">
       <button
-        className="flex items-center gap-2 border-gray-50 text-sm text-gray-400"
+        className="flex size-9 items-center justify-center gap-2 rounded-xl border-gray-50 bg-neutral-700/10"
         onClick={() => setStatusOption(!statusOption)}
       >
         {item.status === 'Completed' ? (
