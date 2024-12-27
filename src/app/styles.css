@@ -11,12 +11,12 @@
 }
 html,
 body {
-  @apply flex items-center justify-center w-full h-screen;
+  @apply flex items-center justify-center w-full h-screen bg-[#F5F9FF] dark:bg-black;
   font-family: var(--font-raleway);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-smooth: never;
+  --font-smooth: never;
 }
 
 

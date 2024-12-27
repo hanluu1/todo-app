@@ -1,5 +1,5 @@
 import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
-import { PlusCircleIcon } from '@heroicons/react/outline';
+import { PlusCircleIcon } from '@heroicons/react/16/solid';
 import { useState } from 'react';
 
 import { type Todo } from '@/stores';

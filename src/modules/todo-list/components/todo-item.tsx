@@ -1,22 +1,19 @@
-import { PencilAltIcon, TagIcon, TrashIcon } from '@heroicons/react/outline';
+import { PencilSquareIcon, TrashIcon } from '@heroicons/react/16/solid';
 import { useState } from 'react';
 
 import { type Todo } from '@/stores';
 
 import { DeletePanel } from './delete-panel';
 import { ModalEditItem } from './modal-edit-item';
-import { StatusOptions } from './status-options';
-import { TagSelectModal } from './tag-select-modal';
+import { StatusOptions } from './task-status/status-options';
 
 export function TodoItem({ item }: { item: Todo }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [showTagModal, setShowTagModal] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
-
   return (
     <div
       id={item?.id}
-      className="flex w-full items-center justify-between rounded-3xl bg-neutral-700/5 p-4 text-xl font-bold text-orange-200"
+      className="flex w-full items-center justify-between rounded-2xl bg-neutral-700/5 p-2 text-l font-semibold text-orange-200 dark:bg-gray-600 "
     >
       <div className="flex w-full flex-col gap-2">
         <div
@@ -25,7 +22,7 @@ export function TodoItem({ item }: { item: Todo }) {
         >
           <StatusOptions item={item} />
           <div className="flex items-center gap-1 ">
-            <PencilAltIcon className="w-5 cursor-pointer" onClick={() => setShowModalEdit(true)} />
+            <PencilSquareIcon className="w-5 cursor-pointer" onClick={() => setShowModalEdit(true)} />
             <TrashIcon
               className="w-5 cursor-pointer text-red-500"
               onClick={(e) => {
@@ -33,20 +30,14 @@ export function TodoItem({ item }: { item: Todo }) {
                 setIsOpen(true);
               }}
             />
-            <TagIcon
-              className="w-5 cursor-pointer text-blue-400"
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowTagModal(true);
-              }}
-            />
+           
           </div>
         </div>
         {!!item.tags?.length && (
           <div className="flex flex-wrap gap-2 p-2">
             {item.tags.map((tag) => (
               <div
-                className="rounded-full px-4 py-1 text-yellow-100"
+                className="rounded-full px-4 py-1 text-sm text-yellow-100"
                 key={tag.title}
                 style={{
                   backgroundColor: tag.color,
@@ -60,7 +51,6 @@ export function TodoItem({ item }: { item: Todo }) {
       </div>
       <ModalEditItem data={item} isOpen={showModalEdit} onClose={() => setShowModalEdit(false)} />
       <DeletePanel item={item} isOpen={isOpen} onClose={() => setIsOpen(false)} />
-      <TagSelectModal data={item} isOpen={showTagModal} onClose={() => setShowTagModal(false)} />
     </div>
   );
 }

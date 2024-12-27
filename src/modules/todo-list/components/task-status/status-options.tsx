@@ -1,27 +1,36 @@
-import { StarIcon, StarIcon as StartIconSolid } from '@heroicons/react/solid';
+import {Battery0Icon, Battery50Icon, Battery100Icon} from '@heroicons/react/16/solid';
 import { useState } from 'react';
 
 import type { Todo } from '@/stores';
 import { useTodoStore } from '@/stores';
+import { Button } from '@/components/base';
 
 import { StatusSelectModal } from './status-select-modal';
 
 export const StatusOptions = ({ item }: { item: Todo }) => {
   const [statusOption, setStatusOption] = useState(false);
   return (
-    <div className="relative flex items-center justify-between gap-2 text-black">
-      <button
-        className="flex size-9 items-center justify-center gap-2 rounded-xl border-gray-50 bg-neutral-700/10"
-        onClick={() => setStatusOption(!statusOption)}
+    <div className="relative flex items-center justify-between gap-2 text-black dark:text-white">
+      <Button color={
+    item.status === 'Completed'
+      ? 'green'
+      : item.status === 'In progress'
+      ? 'blue'
+      : 'red' 
+  }
+        className="flex size-9 items-center justify-center gap-2 rounded-xl border-gray-50  dark:bg-gray-700"
+        onClick={(e) => {
+          e.stopPropagation();
+          setStatusOption(!statusOption)}}
       >
         {item.status === 'Completed' ? (
-          <StartIconSolid className="size-5 text-yellow-500" />
+          <Battery100Icon className="size-5 text-white" />
         ) : item.status === 'In progress' ? (
-          <StarIcon className="size-5 text-pink-300 " />
+          <Battery50Icon className="size-5 text-white" />
         ) : (
-          <StarIcon className="size-5 fill-none stroke-yellow-500" />
+          <Battery0Icon className="size-5 text-white" />
         )}
-      </button>
+      </Button>
       <p>{item?.title}</p>
       {statusOption && (
         <StatusSelectModal

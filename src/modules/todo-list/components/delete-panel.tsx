@@ -1,5 +1,5 @@
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react';
-import { ExclamationIcon } from '@heroicons/react/outline';
+import { ExclamationCircleIcon } from '@heroicons/react/16/solid';
 import { type Todo, useTodoStore } from '@/stores';
 
 export const DeletePanel = ({item, isOpen, onClose}: {item: Todo; isOpen: boolean; onClose: () => void}) => {
@@ -20,11 +20,11 @@ export const DeletePanel = ({item, isOpen, onClose}: {item: Todo; isOpen: boolea
               <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                 <div className="sm:flex sm:items-start">
                   <div className="mx-auto flex size-12 shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:size-10">
-                    <ExclamationIcon aria-hidden="true" className="size-6 text-red-600" />
+                    <ExclamationCircleIcon aria-hidden="true" className="size-6 text-red-600" />
                   </div>
                   <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                     <DialogTitle as="h3" className="text-base text-gray-600">
-                      Are you sure you want to delete this task? Action can not be undone.
+                      Are you sure you want to delete this task? Action can't be undone.
                     </DialogTitle>
                   </div>
                 </div>
@@ -34,6 +34,7 @@ export const DeletePanel = ({item, isOpen, onClose}: {item: Todo; isOpen: boolea
                   type="button"
                   onClick={() => {
                     useTodoStore.getState().deleteTodo(item.id);
+                    onClose();
                   }}
                   className="inline-flex w-full justify-center rounded-md bg-gray-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 sm:ml-3 sm:w-auto"
                 >

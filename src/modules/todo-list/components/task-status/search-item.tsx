@@ -1,4 +1,4 @@
-import { SearchIcon } from '@heroicons/react/outline';
+import { MagnifyingGlassIcon } from '@heroicons/react/16/solid';
 import React from 'react';
 
 export function SearchBar({
@@ -9,7 +9,7 @@ export function SearchBar({
   setSearchString: (query: string) => void;
 }) {
   return (
-    <div className=" flex h-10 w-full max-w-96 items-center gap-2 self-center">
+    <div className=" flex w-full rounded-lg shadow-lg max-w-96 items-center gap-2 self-center dark:bg-gray-600">
       <label htmlFor="todo" className="w-[90%] text-gray-700 ">
         <input
           className="h-10 w-full rounded-md p-4 dark:bg-gray-600 dark:text-white "
@@ -20,10 +20,8 @@ export function SearchBar({
         />
       </label>
       
-      <button className="flex h-10 w-[10%] items-center justify-center rounded-lg  bg-orange-100 dark:bg-slate-500" >
-    
-        <SearchIcon className="w-5 text-black dark:text-white" />
-      </button>
+      <MagnifyingGlassIcon className="flex w-5 cursor-pointer items-center justify-center rounded-3xl  text-black dark:text-white " />
+      
     </div>
   );
 }

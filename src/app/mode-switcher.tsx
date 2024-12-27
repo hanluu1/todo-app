@@ -1,7 +1,6 @@
 import {useTheme} from "next-themes";
 
-import { SunIcon, MoonIcon, CogIcon } from "@heroicons/react/outline";
-
+import { SunIcon, MoonIcon, CogIcon } from "@heroicons/react/16/solid";
 
 export function ModeToggle() {
   const { theme, setTheme } = useTheme();

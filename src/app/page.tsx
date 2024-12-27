@@ -11,7 +11,7 @@ import { ModeToggle } from './mode-switcher';
 
 function Home() {
   return (
-    <div className="flex h-screen w-full flex-col duration-300 sm:max-w-full  dark:bg-black  ">
+    <div className="flex flex-col h-screen w-full  duration-300 sm:max-w-full dark:bg-black  ">
       <Header />
       <ModeToggle />
       <TodoListRows />

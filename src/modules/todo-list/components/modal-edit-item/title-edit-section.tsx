@@ -1,4 +1,4 @@
-import { CheckIcon, XIcon } from '@heroicons/react/outline';
+import { CheckIcon, XMarkIcon } from '@heroicons/react/16/solid';
 import { useState } from 'react';
 
 import type { Todo } from '@/stores';
@@ -23,7 +23,7 @@ export const TitleEditSection = ({ data, onClose }: { data: Todo; onClose: () =>
           onClose();
         }}
       />
-      <XIcon className="w-5 cursor-pointer text-red-500" onClick={() => setInputText(data.title)} />
+      <XMarkIcon className="w-5 cursor-pointer text-red-500" onClick={() => setInputText(data.title)} />
     </div>
   );
 };

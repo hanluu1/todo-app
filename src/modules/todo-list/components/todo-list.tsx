@@ -3,8 +3,9 @@ import { useMemo } from 'react';
 import { useTodoStore } from '@/stores';
 
 import { TodoItem } from './todo-item';
+import { Form } from '@/modules/home';
 
-export const TodoList = ({ status}: { status: string }) => {
+export const TodoList = ({ status, }: { status: string }) => {
   const todos = useTodoStore((state) => state.todos);
   const displayList = useMemo(
     () => todos.filter((item) => (status ? item.status === status : !item.status)),
@@ -22,12 +23,12 @@ export const TodoList = ({ status}: { status: string }) => {
             {displayList.map((item, index) => (
               <TodoItem key={index} item={item} />
             ))}
-            <p className="mt-4 text-zinc-600"></p>
           </>
         ) : (
-          <p className="text-zinc-600"></p>
+          <p className="text-zinc-600">Oops add more here</p>
         )}
       </ol>
+      <Form />
     </div>
   );
 };
