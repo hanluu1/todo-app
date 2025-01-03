@@ -3,15 +3,13 @@ import { useTodoStore } from "@/stores";
 import { TodoItem } from '../todo-item';
 import { TodoList } from '../todo-list';
 
-export const StatusFilter = ({
-  selectedStatus,
-  searchString,
-  setSearchString,
-}: {
-  selectedStatus: string | null;
-  searchString: string;
-  setSearchString: (value: string) => void;
-}) => {
+export const StatusFilter = ({selectedStatus,
+                              searchString,
+                             }: 
+                             {selectedStatus: string | null;
+                              searchString: string;
+                              }) => {
+                                
   const todos = useTodoStore((state) => state.todos);
 
   const filteredTodos = todos.filter((todo) => {
@@ -22,6 +20,7 @@ export const StatusFilter = ({
 
   const showInProgress = todos.some((todo) => todo.status === "In progress");
   const showComplete = todos.some((todo) => todo.status === "Completed");
+
   return(
    
      <div className="flex flex-col gap-3 pb-20">

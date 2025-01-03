@@ -22,7 +22,7 @@ export function TodoItem({ item }: { item: Todo }) {
         >
           <StatusOptions item={item} />
           <div className="flex items-center gap-1 ">
-            <PencilSquareIcon className="w-5 cursor-pointer" onClick={() => setShowModalEdit(true)} />
+            <PencilSquareIcon className="w-5 cursor-pointer text-orange-300" onClick={() => setShowModalEdit(true)} />
             <TrashIcon
               className="w-5 cursor-pointer text-red-500"
               onClick={(e) => {

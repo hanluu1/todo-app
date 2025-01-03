@@ -8,7 +8,7 @@ export const FilterBar = ({
   setSelectedStatus: (status: string | null) => void;
 }) => {
   return (
-    <div className="flex flex-row justify-center gap-2">
+    <div className="flex flex-row justify-center gap-3">
       <button
         className={clsx(
           "flex max-w-24 justify-center rounded-full p-2 text-sm font-bold",

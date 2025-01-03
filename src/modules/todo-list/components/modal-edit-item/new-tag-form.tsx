@@ -38,7 +38,7 @@ export const NewTagForm = ({ onClose }: { onClose: () => void }) => {
           }}
           text="Save"
         />
-        <Button color="white" onClick={onClose} text="Cancel" />
+        <Button color="blue" onClick={onClose} text="Cancel" />
       </div>
     </div>
   );

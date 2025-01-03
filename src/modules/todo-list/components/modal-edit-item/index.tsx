@@ -7,9 +7,12 @@ import { type Todo } from '@/stores';
 import { NewTagForm } from './new-tag-form';
 import { TagSelect } from './tag-select';
 import { TitleEditSection } from './title-edit-section';
+import { ChooseStatus } from './choose-status';
+
 
 export const ModalEditItem = ({ data, isOpen, onClose }: { data: Todo; isOpen: boolean; onClose: () => void }) => {
   const [showForm, setShowForm] = useState(false);
+
 
   return (
     <Dialog
@@ -39,6 +42,10 @@ export const ModalEditItem = ({ data, isOpen, onClose }: { data: Todo; isOpen: b
             {showForm && <NewTagForm onClose={() => setShowForm(false)} />}
           </div>
         </div>
+        <div className='flex flex-row'>
+          <ChooseStatus data={data}/>
+        </div>
+       
       </DialogPanel>
     </Dialog>
   );

@@ -22,7 +22,6 @@ export function TodoListRows() {
       <StatusFilter
         selectedStatus={selectedStatus}
         searchString={searchString}
-        setSearchString={setSearchString}
       />    
       </div>
   );

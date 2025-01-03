@@ -14,7 +14,7 @@ export const TodoList = ({ status, }: { status: string }) => {
   
   return (
     <div className="relative flex w-full flex-col py-3  ">
-      <div className="flex max-w-24 justify-center rounded-full border border-black bg-white p-2 text-sm font-bold text-zinc-600">
+      <div className="flex max-w-28 justify-center rounded-xl bg-white shadow-sm p-2 text-base font-bold text-black">
         {status || 'To Do' }
       </div>
       <ol className="flex w-full flex-col items-start gap-4 self-center pt-3">
@@ -28,7 +28,7 @@ export const TodoList = ({ status, }: { status: string }) => {
           <p className="text-zinc-600">Oops add more here</p>
         )}
       </ol>
-      <Form />
+      {!status && <Form />}
     </div>
   );
 };
