@@ -10,7 +10,7 @@ A simple and customizable Todo application to help you manage your tasks efficie
 - Filter tasks by status.
 - Responsive design for mobile and desktop.
 
-## what it look like
+## A lil showcase
 
 <img src= 'src/demotodo.gif' title='demo' width='500' alt='todo demo'/>
 
