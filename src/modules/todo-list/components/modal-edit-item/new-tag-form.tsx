@@ -11,6 +11,7 @@ export const NewTagForm = ({ onClose }: { onClose: () => void }) => {
     <div className="mt-4 rounded-lg bg-white p-4 shadow-md">
       <h3 className="text-lg font-medium text-black">Input new tag</h3>
       <div className="flex flex-row">
+  
         <input
           type="text"
           value={tagTitle}

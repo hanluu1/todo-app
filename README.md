@@ -10,9 +10,9 @@ A simple and customizable Todo application to help you manage your tasks efficie
 - Filter tasks by status.
 - Responsive design for mobile and desktop.
 
-## Demo
+## what it look like
 
-<img src="src/demotodo.gif" title='demo' width='500' alt='todo demo'/>
+<img src= 'src/demotodo.gif' title='demo' width='500' alt='todo demo'/>
 
 ## Usage
 - Add a Task: Type a task in the input field and click the "Add" button or press Enter.
