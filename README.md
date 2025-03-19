@@ -1,6 +1,6 @@
 # Todo App
 
-A simple and customizable Todo application to help you manage your tasks efficiently.
+A simple and customizable Todo application to help manage tasks efficiently.
 
 ## Features
 
@@ -27,8 +27,4 @@ A simple and customizable Todo application to help you manage your tasks efficie
 - State Management: Zustand
 - Icons: Heroicons
 
-## Contact
-For any questions or suggestions, feel free to reach out:
-- GitHub: hanluu1.
-- Email: hanluu062019@gmail.com.
 
